@@ -3,14 +3,11 @@ nearest-satellites.py - Calculating The Nearest Satellite From the ISS
 
 This script calculates the nearest satellites from the ISS. It iterates
 every minute between -3 to +3 months from now, and calculate the
-nearest satellite at the given minute. At the end it tabulates the result
+nearest satellite at the given minute. At the end it tabulates the results
 and displays the 100 nearest satellites from the ISS, as well as their
 distances and the average distance.
 
-This is intended to show that it is unrealistic to expect satellites
-to appear in photos taken from the ISS. And when satellite does appear, it
-would be an very extraordinary event, at least when using wide angle lenses
-usually used to take pictures from the ISS.
+This is intended to show that it is unrealistic to expect satellites to appear in photos taken from the ISS. We can't rule out the possibility of satellites appearing in ISS photos, but it would be an extraordinary event, at least when using wide angle lenses usually used to take pictures from the ISS.
 
 ## Usage
 
