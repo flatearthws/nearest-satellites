@@ -53,7 +53,6 @@ while curtime <= endtime:
     observer.date = curtimes
 
     refbody.compute(observer)
-    # distances = []
     nearestdistance = 99999999999999999999999999999
     nearestname = ''
 
@@ -63,9 +62,7 @@ while curtime <= endtime:
             angle = float(repr(ephem.separation(refbody, body)))
             a = refbody.range
             b = body.range
-            # print(separation, range1, range2)
             distance = sqrt(a**2 + b**2 - 2*a*b*cos(angle))
-            # distances.append([body.name, distance])
             if distance < nearestdistance:
                 nearestdistance = distance
                 nearestname = body.name
@@ -88,9 +85,9 @@ for distance in nearests:
     ndistance += 1
 averagedistance = sumdistance / ndistance
 
-print('===== average minimum distance to nearest satellite: ', averagedistance)
+print('===== average distance to nearest satellite: ', averagedistance)
 print('===== total satellites: ', len(bodies))
-print('===== list of close by satellites:')
+print('===== list of nearest satellites:')
 
 i=0
 for key, value in sorted(uniquenearest.items(), key=lambda item: (item[1],item[0])):
