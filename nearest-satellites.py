@@ -5,17 +5,27 @@ from math import cos, sqrt
 from operator import itemgetter
 import sys
 
+# TLE file
+tlefile = 'tle.txt'
+
+# ISS name in the TLE file
 refbodyname = '0 ISS (ZARYA)'
-startdelta = timedelta(90)
-enddelta = timedelta(180)
-starttime = datetime.utcnow() - startdelta
-numdays = 1
-resolution = 60 # seconds
+
+# start of analysis (90 days in the past)
+starttime = datetime.utcnow() - timedelta(90)
+
+# end of analysis (180 days after starting time)
+endtime = starttime + timedelta(180)
+
+# sampling rate
+resdelta = timedelta(seconds = 60)
+
+
 
 bodies = []
 refbody = ''
 
-with open('tle.txt') as f:
+with open(tlefile) as f:
     l0 = ''
     l1 = ''
     l2 = ''
@@ -36,11 +46,9 @@ with open('tle.txt') as f:
             else:
                 bodies.append(body)
 
-endtime = starttime + enddelta
-resdelta = timedelta(seconds = resolution)
-curtime = starttime
 
 nearests = []
+curtime = starttime
 
 while curtime <= endtime:
     curtimes = curtime.strftime('%Y/%m/%d %H:%M:%S')
