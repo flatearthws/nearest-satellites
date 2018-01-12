@@ -3,7 +3,7 @@ import ephem
 from datetime import datetime, timedelta
 from math import cos, sqrt
 from operator import itemgetter
-import sys
+import statistics
 
 # TLE file
 tlefile = 'tle.txt'
@@ -87,15 +87,29 @@ uniquenearest = {}
 for distance in nearests:
     uniquenearest[distance[1]] = distance[0]
 
-sumdistance = ndistance = 0
+# sumdistance = ndistance = 0
+distances = []
 for distance in nearests:
-    sumdistance += distance[0]
-    ndistance += 1
-averagedistance = sumdistance / ndistance
+    distances.append(distance[0])
+mean = statistics.mean(distances)
+stdev = statistics.stdev(distances)
+pstdev = statistics.pstdev(distances)
+pvariance = statistics.pvariance(distances)
+variance = statistics.variance(distances)
 
-print('===== average distance to nearest satellite: ', averagedistance)
-print('===== total satellites: ', len(bodies))
-print('===== list of nearest satellites:')
+print()
+print('RESULTS: ')
+print('starttime: ', starttime)
+print('endtime: ', endtime)
+print('sampling rate: ', resdelta)
+print('mean: ', mean)
+print('stddev: ', stdev)
+print('pstddev: ', pstdev)
+print('variance: ', variance)
+print('pvariance: ', pvariance)
+print('n: ', len(distances))
+print('total satellites: ', len(bodies)-1)
+print('list of nearest satellites:')
 
 i=0
 for key, value in sorted(uniquenearest.items(), key=lambda item: (item[1],item[0])):
