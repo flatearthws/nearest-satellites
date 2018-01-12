@@ -19,7 +19,11 @@ endtime = starttime + timedelta(180)
 
 # sampling rate
 resdelta = timedelta(seconds = 60)
+# resdelta = timedelta(days = 2)
 
+
+
+startprocess = datetime.utcnow()
 
 
 bodies = []
@@ -96,11 +100,15 @@ stdev = statistics.stdev(distances)
 pstdev = statistics.pstdev(distances)
 pvariance = statistics.pvariance(distances)
 variance = statistics.variance(distances)
+endprocess = datetime.utcnow()
 
 print()
 print('RESULTS: ')
-print('starttime: ', starttime)
-print('endtime: ', endtime)
+
+print('start of procesing: ', startprocess)
+print('end of procesing: ', endprocess)
+print('start of simulation: ', starttime)
+print('end of simulation: ', endtime)
 print('sampling rate: ', resdelta)
 print('mean: ', mean)
 print('stddev: ', stdev)
