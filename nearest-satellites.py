@@ -63,6 +63,9 @@ while curtime <= endtime:
     observer.lat = 0
     observer.elevation = -6371000 # center of the earth
     observer.date = curtimes
+    # minimize refraction:
+    observer.temp = -272
+    observer.pressure = 0
 
     refbody.compute(observer)
     nearestdistance = 99999999999999999999999999999
@@ -89,7 +92,7 @@ nearests.sort(key=itemgetter(0), reverse=True)
 uniquenearest = {}
 
 for distance in nearests:
-    uniquenearest[distance[1]] = distance[0]
+    uniquenearest[distance[1]] = [distance[0], distance[2]]
 
 # sumdistance = ndistance = 0
 distances = []
@@ -120,8 +123,8 @@ print('total satellites: ', len(bodies)-1)
 print('list of nearest satellites:')
 
 i=0
-for key, value in sorted(uniquenearest.items(), key=lambda item: (item[1],item[0])):
-    print("%s: %s" % (value, key))
+for key, value in sorted(uniquenearest.items(), key=lambda item: (item[1][0],item[0])):
+    print("%s: %s, %s" % (value[0], key, value[1]))
     i += 1
     if i>100:
         break
